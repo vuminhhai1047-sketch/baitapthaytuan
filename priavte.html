@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="./private.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>🎥 Danh sách phim muốn xem</h1>
+
+  <input id="title" type="text" placeholder="Tiêu đề phim">
+  <textarea id="desc" placeholder="Lý do / Mô tả muốn xem"></textarea>
+
+  <div class="actions">
+    <button id="saveBtn">Lưu phim</button>
+    <button id="clearBtn" class="danger">Xóa tất cả</button>
+  </div>
+
+  <h2>Danh sách của bạn (<span id="count">0</span>)</h2>
+
+  <div id="list"></div>
+</div>
+
+<script src="./private.js"></script>
+</body>
+</html>
