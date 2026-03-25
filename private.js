@@ -1,8 +1,10 @@
 let movies = loadData();
+
 const titleInput = document.getElementById("title");
 const descInput = document.getElementById("desc");
 const list = document.getElementById("list");
 const count = document.getElementById("count");
+
 document.getElementById("saveBtn").onclick = function () {
   let title = titleInput.value.trim();
   let desc = descInput.value.trim();
@@ -26,7 +28,7 @@ document.getElementById("saveBtn").onclick = function () {
   titleInput.value = "";
   descInput.value = "";
 
-  alert("Đã lưu phim thành côn");
+  alert("Đã lưu phim thành công");
 };
 
 document.getElementById("clearBtn").onclick = function () {
@@ -39,7 +41,6 @@ document.getElementById("clearBtn").onclick = function () {
 
 function render() {
   list.innerHTML = "";
-
   count.innerText = movies.length;
 
   if (movies.length === 0) {
@@ -55,14 +56,15 @@ function render() {
       <button class="delete" onclick="remove(${m.id})">x</button>
       <h3>🎥 ${m.title}</h3>
       <p>${m.description || ""}</p>
-      <div class="time">${m.time}</div>`;
+      <div class="time">${m.time}</div>
+    `;
 
     list.appendChild(div);
   });
 }
 
 function remove(id) {
-  if (confirm("Bnaj muốn xóa phim này?")) {
+  if (confirm("Bạn muốn xóa phim này?")) {
     movies = movies.filter(m => m.id !== id);
     saveData();
     render();
@@ -74,11 +76,14 @@ function saveData() {
 }
 
 function loadData() {
-  try {
-    return JSON.parse(localStorage.getItem("movieWishlist")) || [];
-  } catch (e) {
+  let data = localStorage.getItem("movieWishlist");
+
+  // nếu chưa có dữ liệu thì trả về mảng rỗng
+  if (!data) {
     return [];
   }
+
+  return JSON.parse(data);
 }
 
 render();
